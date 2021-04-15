@@ -53,4 +53,6 @@ Route::get('/dashboard/delete_user/{id}', 'TaskController@delete_user');
 Route::get('/dashboard/profile', 'TaskController@profile');
 Route::post('/dashboard/update_profile', 'TaskController@update_profile');
 Route::post('/dashboard/change_password', 'TaskController@change_password');
+Route::get('/dashboard/laporan', 'TaskController@laporan')->name('laporan');
+Route::post('/dashboard/cetak_laporan', 'TaskController@cetak_laporan');
 

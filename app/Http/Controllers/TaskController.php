@@ -11,6 +11,7 @@ use App\Models\Supplier;
 use App\Models\User;
 use Auth;
 use Session;
+use PDF;
 use Illuminate\Support\Facades\Hash;
 
 class TaskController extends Controller
@@ -361,5 +362,29 @@ class TaskController extends Controller
         }
         return redirect('/dashboard/profile');
 
+    }
+
+    public function laporan(){
+        return view('dashboard/laporan');
+    }
+
+    public function cetak_laporan(Request $request){
+        $split = explode(' - ', $request->daterange);
+        $start = date('Y-m-d', strtotime($split[0]));
+        $end = date('Y-m-d', strtotime(end($split)));
+        $data['tanggal'] = $request->daterange;
+        if($request->tipe==0){
+            $data['laporan'] = BarangMasuk::join('barang','barang.id_barang','=','barang_masuk.barang_id')->join('supplier','supplier.id_supplier','=','barang_masuk.supplier_id')->join('users','users.id_user','=','barang_masuk.user_id')->whereBetween('tanggal_masuk',[$start,$end])->orderBy('id_barang_masuk','DESC')->get(['tanggal_masuk','id_barang_masuk','nama_barang','nama_supplier','jumlah_masuk']);
+            // return view('dashboard/laporan_masuk',$data);
+            $pdf = PDF::loadView('dashboard/laporan_masuk',$data);
+            // print_r($pdf);
+            return $pdf->download('laporan-barang-masuk-'.$request->daterange.'.pdf');
+            // return $pdf->download('asd.pdf');
+        }
+        else{
+            $data['laporan'] = BarangKeluar::join('barang','barang.id_barang','=','barang_keluar.barang_id')->join('users','users.id_user','=','barang_keluar.user_id')->whereBetween('tanggal_keluar',[$start,$end])->orderBy('id_barang_keluar','DESC')->get(['tanggal_keluar','id_barang_keluar','nama_barang','jumlah_keluar']);
+            $pdf = PDF::loadView('dashboard/laporan_keluar',$data);
+            return $pdf->download('laporan-barang-keluar-'.$request->daterange.'.pdf');
+        }
     }
 }

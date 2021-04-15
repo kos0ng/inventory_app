@@ -169,7 +169,9 @@ Transaksi Barang
                                                 <td>{{$row->nama_barang}}</td>
                                                 <td>{{$row->stok}}</td>
                                                 <td>
-                                                    <button>asd</button>
+                                                    <a href="/dashboard/barang_masuk">
+                                                        <button class="btn btn-success">+</button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             @endforeach

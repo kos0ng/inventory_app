@@ -200,7 +200,7 @@
                         </li>
                         <span style="font-size: 12px;color:#b7b9cc;font-weight: bold;">Report</span>
                         <li class="@yield('laporan')">
-                            <a href="">
+                            <a href="{{route('laporan')}}">
                                 <i class="fas fa-address-book"></i>Cetak Laporan</a>
                         </li>
                         @if(Session::get('role')==1)
@@ -299,11 +299,21 @@
     <script src="{{ asset('vendor/chartjs/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset('vendor/select2/select2.min.js') }}">
     </script>
+    <script type="text/javascript" src="{{ asset('vendor/daterange/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/daterange/daterangepicker.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/daterange/daterangepicker.css') }}" />
 
     <!-- Main JS-->
     <script src="{{ asset('js/main.js') }}"></script>
 
     <script type="text/javascript">
+        $(function() {
+  $('input[name="daterange"]').daterangepicker({
+    opens: 'left'
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+});
         $(document).ready(function() {
     // Setup - add a text input to each footer cell
     $('#searchtable tfoot th').each( function () {
