@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\CheckStatus;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware([CheckStatus::class])->group(function(){
 Route::get('/dashboard', 'TaskController@index')->name('index');
 Route::get('/dashboard/supplier', 'TaskController@supplier')->name('supplier');
 Route::post('/dashboard/insert_supplier', 'TaskController@insert_supplier');
@@ -38,3 +41,5 @@ Route::get('/dashboard/barang_masuk', 'TaskController@barang_masuk')->name('bara
 Route::post('/dashboard/insert_barangmasuk', 'TaskController@insert_barangmasuk');
 Route::post('/dashboard/update_barangmasuk', 'TaskController@update_barangmasuk');
 Route::get('/dashboard/delete_barangmasuk/{id}', 'TaskController@delete_barangmasuk');
+});
+

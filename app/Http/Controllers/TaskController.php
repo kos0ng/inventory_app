@@ -9,11 +9,23 @@ use App\Models\BarangMasuk;
 use App\Models\BarangKeluar;
 use App\Models\Supplier;
 use App\Models\User;
+use Auth;
+use Session;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
-        
+        $user = Auth::user();
+        Session::put('name', $user->name);
+        Session::put('id', $user->id);
+        Session::put('email', $user->email);
+        Session::put('foto', $user->foto);
+        // print_r(Session::get('foto'));die();
         $data['barang'] = Barang::count();
         $data['barang_masuk'] = json_encode(BarangMasuk::count());
         $data['barang_keluar'] = json_encode(BarangKeluar::count());
@@ -156,7 +168,7 @@ class TaskController extends Controller
     }
 
     public function barang_masuk(){
-        $data['all'] = BarangMasuk::join('barang','barang.id_barang','=','barang_masuk.barang_id')->join('supplier','supplier.id_supplier','=','barang_masuk.supplier_id')->join('user','user.id_user','=','barang_masuk.user_id')->orderBy('id_barang_masuk','DESC')->get();
+        $data['all'] = BarangMasuk::join('barang','barang.id_barang','=','barang_masuk.barang_id')->join('supplier','supplier.id_supplier','=','barang_masuk.supplier_id')->join('users','users.id_user','=','barang_masuk.user_id')->orderBy('id_barang_masuk','DESC')->get();
         $data['supplier'] = DB::table('supplier')->get();
         $data['barang'] = DB::table('barang')->get();
         // print($data['all']);
@@ -164,32 +176,32 @@ class TaskController extends Controller
     }
 
     public function insert_barangmasuk(Request $request){
-        $max = Barang::max('id_barang');
-        $kode_tambah = substr($max, -6, 6);
+        $user = Auth::user();
+        $kode = 'T-BM-' . date('ymd');
+        $kode_terakhir = BarangMasuk::max('id_barang_masuk');
+        $kode_tambah = substr($kode_terakhir, -5, 5);
         $kode_tambah++;
-        $number = str_pad($kode_tambah, 6, '0', STR_PAD_LEFT);
-        $id_barang = 'B' . $number;
-        $barang = new Barang;
-        $barang->id_barang = $id_barang;
-        $barang->nama_barang = $request->nama_barang;
-        $barang->satuan_id = $request->satuan_id;
-        $barang->stok = 0;
-        $barang->jenis_id = $request->jenis_id;
-        $barang->save();
-        return redirect('/dashboard/data_barang');
+        $number = str_pad($kode_tambah, 5, '0', STR_PAD_LEFT);
+        $id_barang_masuk = $kode . $number;
+        
+        $barangmasuk = new BarangMasuk;
+        $barangmasuk->id_barang_masuk = $id_barang_masuk;
+        $barangmasuk->supplier_id = $request->supplier_id;
+        $barangmasuk->barang_id = $request->barang_id;
+        $barangmasuk->jumlah_masuk = $request->jumlah_masuk;
+        $barangmasuk->tanggal_masuk = $request->tanggal_masuk;
+        $barangmasuk->user_id = $user->id_user;
+        $barangmasuk->save();
+
+        // $barang = Barang::find($request->barang_id);
+        // $barang->stok = $barang->stok + $request->jumlah_masuk;
+        // $barang->save();
+        return redirect('/dashboard/barang_masuk');
     }
     
-    public function update_barangmasuk(Request $request){
-        $barang = Barang::find($request->id);
-        $barang->nama_barang = $request->nama_barang;
-        $barang->satuan_id = $request->satuan_id;
-        $barang->jenis_id = $request->jenis_id;
-        $barang->save();
-        return redirect('/dashboard/data_barang');
-    }
 
     public function delete_barangmasuk($id){
-        Barang::where('id_barang',$id)->delete();
+        BarangMasuk::where('id_barang_masuk',$id)->delete();
         return true;
     }
 

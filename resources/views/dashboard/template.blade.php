@@ -224,35 +224,42 @@
                             <form class="form-header" action="" method="POST">
                             </form>
                             <div class="header-button">
-                             <!--    <div class="account-wrap">
+                                <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/profile.png" alt="" />
+                                            <img src="images/profile/{{Session::get('foto')}}" alt="" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">Fahmi</a>
+                                            <a class="js-acc-btn" href="#">{{Session::get('name')}}</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/profile.png" alt="John Doe" />
+                                                        <img src="images/profile/{{Session::get('foto')}}" alt="John Doe" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">Fahmi</a>
+                                                        <a href="#">{{Session::get('name')}}</a>
                                                     </h5>
-                                                    <span class="email">johndoe@example.com</span>
+                                                    <span class="email">{{Session::get('email')}}</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        <i class="zmdi zmdi-power"></i>Logout</a>
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                             </div>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -348,37 +355,9 @@
                 });
             }
         }
-        function deleteKasus(id){
+        function deleteBarangMasuk(id){
             if (confirm('Yakin ingin menghapus data?')) {
-                $.get("/dashboard/deleteKasus/"+id,function(result){    
-                    location.reload();
-                });
-            }
-        }
-        function deleteKonseling(id){
-            if (confirm('Yakin ingin menghapus data?')) {
-                $.get("/dashboard/deleteKonseling/"+id,function(result){    
-                    location.reload();
-                });
-            }
-        }
-        function deleteWali(id){
-            if (confirm('Yakin ingin menghapus data?')) {
-                $.get("/dashboard/deleteWali/"+id,function(result){    
-                    location.reload();
-                });
-            }
-        }
-        function deleteAlumni(id){
-            if (confirm('Yakin ingin menghapus data?')) {
-                $.get("/dashboard/deleteAlumni/"+id,function(result){    
-                    location.reload();
-                });
-            }
-        }
-        function deleteBK(id){
-            if (confirm('Yakin ingin menghapus data?')) {
-                $.get("/dashboard/deleteBK/"+id,function(result){    
+                $.get("/dashboard/delete_barangmasuk/"+id,function(result){    
                     location.reload();
                 });
             }

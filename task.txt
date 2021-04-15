@@ -1,0 +1,1 @@
+js for showing stok,total stok,id barang,id barang masuk

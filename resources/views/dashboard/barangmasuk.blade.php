@@ -1,8 +1,8 @@
 @extends('dashboard/template')
 
-@section('title','Data Siswa')
+@section('title','Barang Masuk')
 
-@section('barang','active')
+@section('barangmasuk','active')
 
 @section('content')
 
@@ -18,35 +18,39 @@
 
         <div class="modal fade" id="tambahSiswa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" style="margin-top: 5%">
             <div class="modal-dialog" role="document">
-                <form method="post" action="/dashboard/insert_barang">
+                <form method="post" action="/dashboard/insert_barangmasuk">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Tambah Jenis</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Tambah Barang Masuk</h5>
                         </div>
                         <div class="modal-body">
  
                             {{ csrf_field() }}
  
-                            <label>Nama Barang</label>
+                            <label>Tanggal Masuk</label>
                             <div class="form-group">
-                                <input type="text" name="nama_barang" class="form-control" required placeholder="Nama Barang">
+                                <input type="date" name="tanggal_masuk" class="form-control" required placeholder="Tanggal Masuk">
                             </div>
 
                             <label>Supplier</label>
                             <div class="form-group">
-                                <select class="form-control" name="barang_id">
+                                <select class="form-control" name="supplier_id">
                                 @foreach($supplier as $row_s)
                                     <option value="{{$row_s->id_supplier}}">{{$row_s->nama_supplier}}</option>
                                 @endforeach
                                 </select>
                             </div>
-                            <label>Supplier</label>
+                            <label>Barang</label>
                             <div class="form-group">
                                 <select class="form-control" name="barang_id">
                                 @foreach($barang as $row_b)
                                     <option value="{{$row_b->id_barang}}">{{$row_b->nama_barang}}</option>
                                 @endforeach
                                 </select>
+                            </div>
+                            <label>Jumlah Masuk</label>
+                            <div class="form-group">
+                                <input type="number" name="jumlah_masuk" class="form-control">
                             </div>
 
                         </div>
@@ -86,7 +90,7 @@
                                                 <td>{{$row->nama_supplier}}</td>
                                                 <td>{{$row->nama_barang}}</td>
                                                 <td>{{$row->jumlah_masuk}}</td>
-                                                <td>{{$row->nama}}</td>
+                                                <td>{{$row->name}}</td>
                                                 <td>
 
                                                     <button class="btn btn-danger" onclick="deleteBarangMasuk('{{$row->id_barang_masuk}}')">
