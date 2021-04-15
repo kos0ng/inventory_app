@@ -265,7 +265,7 @@
           labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', ''],
           datasets: [
             {
-              label: 'My First dataset',
+              label: 'Barang Masuk',
               backgroundColor: brandService,
               borderColor: 'transparent',
               pointHoverBackgroundColor: '#fff',
@@ -274,7 +274,7 @@
 
             },
             {
-              label: 'My Second dataset',
+              label: 'Barang Keluar',
               backgroundColor: brandProduct,
               borderColor: 'transparent',
               pointHoverBackgroundColor: '#fff',

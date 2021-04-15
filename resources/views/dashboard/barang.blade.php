@@ -1,6 +1,6 @@
 @extends('dashboard/template')
 
-@section('title','Data Siswa')
+@section('title','Data Barang')
 
 @section('barang','active')
 

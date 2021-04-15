@@ -11,6 +11,7 @@ class BarangKeluar extends Model
     public $timestamps = false;
     protected $primaryKey = 'id_barang_keluar';
     protected $table = 'barang_keluar';
+    protected $keyType = 'string';
     protected $fillable = [
         'id_barang_keluar',
         'user_id',

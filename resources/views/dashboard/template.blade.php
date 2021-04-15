@@ -195,7 +195,7 @@
                                 <i class="fas fa-user-plus"></i>Barang Masuk</a>
                         </li>
                         <li class="@yield('barangkeluar')">
-                            <a href="">
+                            <a href="{{route('barang_keluar')}}">
                                 <i class="fas fa-mortar-board"></i>Barang Keluar</a>
                         </li>
                         <span style="font-size: 12px;color:#b7b9cc;font-weight: bold;">Report</span>
@@ -203,11 +203,13 @@
                             <a href="">
                                 <i class="fas fa-address-book"></i>Cetak Laporan</a>
                         </li>
+                        @if(Session::get('role')==1)
                         <span style="font-size: 12px;color:#b7b9cc;font-weight: bold;">Settings</span>
                         <li class="@yield('user_management')">
-                            <a href="">
+                            <a href="{{route('user_management')}}">
                                 <i class="fas fa-address-book"></i>User Management</a>
                         </li>
+                        @endif
                     </ul>
                 </nav>
             </div>
@@ -227,7 +229,7 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/profile/{{Session::get('foto')}}" alt="" />
+                                            <img src="/images/profile/{{Session::get('foto')}}" alt="" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">{{Session::get('name')}}</a>
@@ -236,12 +238,12 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/profile/{{Session::get('foto')}}" alt="John Doe" />
+                                                        <img src="/images/profile/{{Session::get('foto')}}" alt="John Doe" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">{{Session::get('name')}}</a>
+                                                        <a href="/dashboard/profile">{{Session::get('name')}}</a>
                                                     </h5>
                                                     <span class="email">{{Session::get('email')}}</span>
                                                 </div>
@@ -358,6 +360,20 @@
         function deleteBarangMasuk(id){
             if (confirm('Yakin ingin menghapus data?')) {
                 $.get("/dashboard/delete_barangmasuk/"+id,function(result){    
+                    location.reload();
+                });
+            }
+        }
+        function deleteBarangKeluar(id){
+            if (confirm('Yakin ingin menghapus data?')) {
+                $.get("/dashboard/delete_barangkeluar/"+id,function(result){    
+                    location.reload();
+                });
+            }
+        }
+        function deleteUser(id){
+            if (confirm('Yakin ingin menghapus data?')) {
+                $.get("/dashboard/delete_user/"+id,function(result){    
                     location.reload();
                 });
             }

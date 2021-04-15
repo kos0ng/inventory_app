@@ -1,1 +1,3 @@
 js for showing stok,total stok,id barang,id barang masuk
+remove stok if deleted?
+notification if fail -> see on profile

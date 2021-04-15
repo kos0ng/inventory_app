@@ -104,7 +104,7 @@
                                         <h3 class="title-2">
 Total Transaksi Barang Perbulan pada Tahun 2021
 </h3>
-                                        <div class="chart-info">
+                                        <div class="chart-info" style="margin-top: 2%">
                                             <div class="chart-info__left">
                                                 <div class="chart-note">
                                                     <span class="dot dot--blue"></span>
@@ -113,18 +113,6 @@ Total Transaksi Barang Perbulan pada Tahun 2021
                                                 <div class="chart-note mr-0">
                                                     <span class="dot dot--green"></span>
                                                     <span>Barang Keluar</span>
-                                                </div>
-                                            </div>
-                                            <div class="chart-info__right">
-                                                <div class="chart-statis">
-                                                    <span class="index incre">
-                                                        <i class="zmdi zmdi-long-arrow-up"></i>25%</span>
-                                                    <span class="label">Prestasi</span>
-                                                </div>
-                                                <div class="chart-statis mr-0">
-                                                    <span class="index decre">
-                                                        <i class="zmdi zmdi-long-arrow-down"></i>10%</span>
-                                                    <span class="label">Kasus</span>
                                                 </div>
                                             </div>
                                         </div>

@@ -13,14 +13,14 @@ use App\Http\Middleware\CheckStatus;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'TaskController@index')->name('index');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware([CheckStatus::class])->group(function(){
 Route::get('/dashboard', 'TaskController@index')->name('index');
+});
+
 Route::get('/dashboard/supplier', 'TaskController@supplier')->name('supplier');
 Route::post('/dashboard/insert_supplier', 'TaskController@insert_supplier');
 Route::post('/dashboard/update_supplier', 'TaskController@update_supplier');
@@ -41,5 +41,16 @@ Route::get('/dashboard/barang_masuk', 'TaskController@barang_masuk')->name('bara
 Route::post('/dashboard/insert_barangmasuk', 'TaskController@insert_barangmasuk');
 Route::post('/dashboard/update_barangmasuk', 'TaskController@update_barangmasuk');
 Route::get('/dashboard/delete_barangmasuk/{id}', 'TaskController@delete_barangmasuk');
-});
+Route::get('/dashboard/barang_keluar', 'TaskController@barang_keluar')->name('barang_keluar');
+Route::post('/dashboard/insert_barangkeluar', 'TaskController@insert_barangkeluar');
+Route::post('/dashboard/update_barangkeluar', 'TaskController@update_barangkeluar');
+Route::get('/dashboard/delete_barangkeluar/{id}', 'TaskController@delete_barangkeluar');
+Route::get('/dashboard/user_management', 'TaskController@user_management')->name('user_management');
+Route::post('/dashboard/activate_user', 'TaskController@activate_user');
+Route::post('/dashboard/insert_user', 'TaskController@insert_user');
+Route::post('/dashboard/update_user', 'TaskController@update_user');
+Route::get('/dashboard/delete_user/{id}', 'TaskController@delete_user');
+Route::get('/dashboard/profile', 'TaskController@profile');
+Route::post('/dashboard/update_profile', 'TaskController@update_profile');
+Route::post('/dashboard/change_password', 'TaskController@change_password');
 

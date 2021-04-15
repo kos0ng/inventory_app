@@ -1,8 +1,8 @@
 @extends('dashboard/template')
 
-@section('title','Satuan Barang')
+@section('title','Barang Keluar')
 
-@section('barang','active')
+@section('barangkeluar','active')
 
 @section('content')
 
@@ -11,25 +11,38 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h3 class="title-5 m-b-35">Data Satuan</h3>
+                                <h3 class="title-5 m-b-35">Riwayat Data Barang Keluar</h3>
                             <button type="button" class="btn btn-success mr-3" data-toggle="modal" data-target="#tambahSiswa" style="margin-bottom: 1%">
             Tambah Data
         </button>
 
         <div class="modal fade" id="tambahSiswa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" style="margin-top: 5%">
             <div class="modal-dialog" role="document">
-                <form method="post" action="/dashboard/insert_satuan">
+                <form method="post" action="/dashboard/insert_barangkeluar">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Tambah Satuan</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Tambah Barang Keluar</h5>
                         </div>
                         <div class="modal-body">
  
                             {{ csrf_field() }}
  
-                            <label>Nama Satuan</label>
+                            <label>Tanggal Keluar</label>
                             <div class="form-group">
-                                <input type="text" name="nama_satuan" class="form-control" required placeholder="Nama Satuan">
+                                <input type="date" name="tanggal_keluar" class="form-control" required placeholder="Tanggal Masuk">
+                            </div>
+
+                            <label>Barang</label>
+                            <div class="form-group">
+                                <select class="form-control" name="barang_id">
+                                @foreach($barang as $row_b)
+                                    <option value="{{$row_b->id_barang}}">{{$row_b->nama_barang}}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                            <label>Jumlah Keluar</label>
+                            <div class="form-group">
+                                <input type="number" name="jumlah_keluar" class="form-control">
                             </div>
 
                         </div>
@@ -48,7 +61,11 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Nama Satuan</th>
+                                                <th>No Transaksi</th>
+                                                <th>Tanggal Keluar</th>
+                                                <th>Nama Barang</th>
+                                                <th>Jumlah Keluar</th>
+                                                <th>User</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -59,40 +76,14 @@
                                             @foreach($all as $row)
                                             <tr>
                                                 <td>{{$i}}</td>
-                                                <td>{{$row->nama_satuan}}</td>
+                                                <td>{{$row->id_barang_keluar}}</td>
+                                                <td>{{$row->tanggal_keluar}}</td>
+                                                <td>{{$row->nama_barang}}</td>
+                                                <td>{{$row->jumlah_keluar}}</td>
+                                                <td>{{$row->name}}</td>
                                                 <td>
-                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editSatuan{{$row->id_satuan}}" >
-            Edit
-        </button>
 
-        <div class="modal fade" id="editSatuan{{$row->id_satuan}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" style="margin-top: 5%">
-            <div class="modal-dialog" role="document">
-                <form method="post" action="/dashboard/update_satuan">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ubah Satuan</h5>
-                        </div>
-                        <div class="modal-body">
- 
-                            {{ csrf_field() }}
- 
-                            <label>Nama</label>
-                            <input type="hidden" name="id" value="{{$row->id_satuan}}">
-                            <div class="form-group">
-                                <input type="text" name="nama_satuan" class="form-control" required placeholder="Nama" value="{{$row->nama_satuan}}">
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Ubah</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-                                                    <button class="btn btn-danger" onclick="deleteSatuan({{$row->id_satuan}})">
+                                                    <button class="btn btn-danger" onclick="deleteBarangKeluar('{{$row->id_barang_keluar}}')">
                                                         Hapus
                                                     </button>
                                                 </td>
@@ -104,9 +95,13 @@
                                         </tbody>
                                           <tfoot>
             <tr>
-                <th>No</th>
-                <th>Nama Satuan</th>
-                <td></td>
+                                                <th>No</th>
+                                                <th>No Transaksi</th>
+                                                <th>Tanggal Keluar</th>
+                                                <th>Nama Barang</th>
+                                                <th>Jumlah Keluar</th>
+                                                <th>User</th>
+                                                <td></td>
             </tr>
         </tfoot>
                                     </table>
