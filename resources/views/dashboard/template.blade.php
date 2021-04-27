@@ -158,8 +158,8 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo text-center">
                 <a href="#">
-                    <!-- <img src="images/icon/logo.png" alt="Cool Admin" /> -->
-                    <h3>Pengadaan Barang</h3>
+                    <img src="/images/icon/logo.png" alt="Pengadaan Barang" />
+                    {{-- <h3>Pengadaan Barang</h3> --}}
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
