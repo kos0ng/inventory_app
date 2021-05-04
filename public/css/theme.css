@@ -92,7 +92,7 @@ display: inline-block;
 }
 
 #searchtable_next{
-  float: right;
+  margin-left: 1%;
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -1254,10 +1254,7 @@ section {
 
 /* ----- Header ----- */
 .header-desktop {
-    background: #f5f5f5;
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    background: #63cdda;
     position: fixed;
     top: 0;
     right: 0;
@@ -1659,7 +1656,8 @@ section {
 }
 
 .menu-sidebar .logo {
-    background: #f5f5f5;
+    /*background: #63cdda;*/
+    background: white;
     height: 75px;
     padding: 0 35px;
     display: -webkit-box;
@@ -1672,10 +1670,6 @@ section {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
-    border-right: 1px solid #e5e5e5;
     position: relative;
     z-index: 3;
 }

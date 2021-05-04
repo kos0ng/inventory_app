@@ -1,3 +1,12 @@
 js for showing stok,total stok,id barang,id barang masuk
 remove stok if deleted?
 notification if fail -> see on profile
+
+print ,  pdf , excel -> table
+export data per table
+
+// done previous next deket - > margin-left 1% , float : none
+judul times new roman pinggir
+sidebar #9AECDB , color: black
+slider sidebar
+// done header pinggir,#63cdda

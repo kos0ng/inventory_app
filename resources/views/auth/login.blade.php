@@ -2,14 +2,21 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row" style="margin-left: 5%">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+            <div class="card" style="margin-top: 27%;width: 150%;">
+                {{-- <div class="card-header">{{ __('Login') }}</div> --}}
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                      
+                      <div class="row">
+                            <div class="col-md-6">
+                                <img src="/images/icon/tmp.png" style="width: 100%">
+                            </div>
+                            <div class="col-md-6" style="padding-top: 6%">
+                                <form method="POST" action="{{ route('login') }}">
                         @csrf
+                        <h1 class="text-center" style="margin-bottom: 10%;    font-family: 'Antonio', sans-serif;">Sistem Informasi Inventaris</h1>
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
@@ -56,15 +63,21 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
+                                    <button type="button" class="btn btn-success">
+                                    <a  href="{{ route('register') }}" style="text-decoration: none;color: white">Register</a>
+                                    </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{-- <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
-                                    </a>
+                                    </a> --}}
                                 @endif
                             </div>
                         </div>
                     </form>
+                            </div>
+                        </div>
+                    
                 </div>
             </div>
         </div>

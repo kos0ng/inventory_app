@@ -43,7 +43,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
+                            <img src="images/icon/logo.png" alt="" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -158,8 +158,8 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo text-center">
                 <a href="#">
-                    <img src="/images/icon/logo.png" alt="Pengadaan Barang" />
-                    {{-- <h3>Pengadaan Barang</h3> --}}
+                    {{-- <img src="/images/icon/logo.png" alt="Pengadaan Barang" /> --}}
+                    {{-- <h3>Sistem Informasi Inventaris</h3> --}}
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -212,6 +212,7 @@
                         @endif
                     </ul>
                 </nav>
+                {{-- <img src="/images/icon/logo.png" alt="Pengadaan Barang" style="margin-top: 100%;margin-left: 5%" /> --}}
             </div>
         </aside>
         <!-- END MENU SIDEBAR-->
@@ -223,6 +224,7 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
+                            <h3>Sistem Informasi Inventaris</h3>
                             <form class="form-header" action="" method="POST">
                             </form>
                             <div class="header-button">
@@ -273,6 +275,7 @@
             @yield('content')
             <!-- END MAIN CONTENT-->
             <!-- END PAGE CONTAINER-->
+            <img src="/images/icon/logo.png" alt="Pengadaan Barang" style="margin-left: 40%;width: 20%;opacity: 60%" />
         </div>
 
     </div>
