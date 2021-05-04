@@ -15,6 +15,38 @@
                             <button type="button" class="btn btn-success mr-3" data-toggle="modal" data-target="#tambahSiswa" style="margin-bottom: 1%">
             Tambah Data
         </button>
+         <button type="button" class="btn btn-warning mr-3" data-toggle="modal" data-target="#exportData" style="margin-bottom: 1%">
+            Export Data
+        </button>
+        <div class="modal fade" id="exportData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" style="margin-top: 10%">
+            <div class="modal-dialog" role="document">
+                <form method="post" action="/dashboard/export_table">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Export Data</h5>
+                        </div>
+                        <div class="modal-body">
+ 
+                            {{ csrf_field() }}
+ 
+                            <input type="hidden" name="id" value="2">
+                            <label>Bentuk Laporan</label>
+                            <div class="form-group">
+                                <select class="form-control" name="output">
+                                    <option value="0">PDF</option>
+                                    <option value="1">Excel</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Export</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 
         <div class="modal fade" id="tambahSiswa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" style="margin-top: 5%">
             <div class="modal-dialog" role="document">

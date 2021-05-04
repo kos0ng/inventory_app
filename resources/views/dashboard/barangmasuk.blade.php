@@ -15,6 +15,9 @@
                             <button type="button" class="btn btn-success mr-3" data-toggle="modal" data-target="#tambahSiswa" style="margin-bottom: 1%">
             Tambah Data
         </button>
+        <button type="button" class="btn btn-warning mr-3" style="margin-bottom: 1%">
+            <a href="/dashboard/laporan" style="text-decoration: none;color: #212529">Export Data</a>
+        </button>
 
         <div class="modal fade" id="tambahSiswa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false" style="margin-top: 5%">
             <div class="modal-dialog" role="document">

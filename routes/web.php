@@ -13,14 +13,12 @@ use App\Http\Middleware\CheckStatus;
 |
 */
 
-Route::get('/', 'TaskController@index')->name('index');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware([CheckStatus::class])->group(function(){
+Route::get('/', 'TaskController@index')->name('index');
 Route::get('/dashboard', 'TaskController@index')->name('index');
-});
-
 Route::get('/dashboard/supplier', 'TaskController@supplier')->name('supplier');
 Route::post('/dashboard/insert_supplier', 'TaskController@insert_supplier');
 Route::post('/dashboard/update_supplier', 'TaskController@update_supplier');
@@ -55,4 +53,6 @@ Route::post('/dashboard/update_profile', 'TaskController@update_profile');
 Route::post('/dashboard/change_password', 'TaskController@change_password');
 Route::get('/dashboard/laporan', 'TaskController@laporan')->name('laporan');
 Route::post('/dashboard/cetak_laporan', 'TaskController@cetak_laporan');
+Route::post('/dashboard/export_table', 'TaskController@export_table');
+});
 

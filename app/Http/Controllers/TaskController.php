@@ -14,8 +14,11 @@ use Session;
 use PDF;
 use Excel;
 use App\Exports\BarangKeluarExport;
+use App\Exports\TableExport;
 use App\Exports\BarangMasukExport;
+use App\Exports\UserExport;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema; 
 
 class TaskController extends Controller
 {
@@ -400,6 +403,50 @@ class TaskController extends Controller
                 $filename = 'laporan-barang-keluar-'.$date.'.xlsx';
                 return Excel::download(new BarangKeluarExport($start,$end), $filename);
             }
+        }
+    }
+
+    public function export_table(Request $request){
+        $id = $request->id;
+        $data['tanggal'] = date("Y-m-d");
+        if($id==0){
+            $table_name = 'supplier';
+        }
+        else if($id==1){
+            $table_name = 'satuan';
+        }
+        else if($id==2){
+            $table_name = 'jenis';
+        }
+        else if($id==3){
+            $table_name = 'barang';
+        }
+        else if($id==4){
+            if($request->output==0){
+                $data['laporan'] = User::get(['id_user','name','email','no_telp','role','is_active']);
+                // return view('dashboard/laporan_user',$data);
+                $pdf = PDF::loadView('dashboard/laporan_user',$data);
+                return $pdf->download('laporan-user-'.$data['tanggal'].'.pdf');
+            }
+            else{
+                $filename = 'laporan-user-'.$data['tanggal'].'.xlsx';
+                return Excel::download(new UserExport, $filename);
+            }
+        }
+
+        if($request->output==0){
+            $data['table_name'] = $table_name;
+            $data['laporan'] = DB::table($table_name)->get();
+            $data['columns'] = Schema::getColumnListing($table_name); 
+            // return view('dashboard/laporan_view',$data);
+            $pdf = PDF::loadView('dashboard/laporan_view',$data);
+            return $pdf->download('laporan-'.$table_name.'-'.$data['tanggal'].'.pdf');
+        }
+        else{
+            // $columns = Schema::getColumnListing($table_name); 
+            // dd($columns); 
+            $filename = 'laporan-'.$table_name.'-'.$data['tanggal'].'.xlsx';
+            return Excel::download(new TableExport($table_name), $filename);
         }
     }
 }
