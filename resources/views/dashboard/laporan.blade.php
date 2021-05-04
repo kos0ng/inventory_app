@@ -44,6 +44,13 @@
                                     <div class="form-group">
                                         <input type="text" name="daterange" value="01/01/2021 - 01/02/2021" class="form-control">
                                     </div>           
+                                    <label>Bentuk Laporan</label>
+                                    <div class="form-group">
+                                        <select name="output" class="form-control">
+                                            <option value="0">PDF</option>
+                                            <option value="1">Excel</option>
+                                        </select>
+                                    </div>           
                                     <input type="submit" name="submit" value="Cetak" class="btn btn-success">
                                 </div>
                                 </form>
